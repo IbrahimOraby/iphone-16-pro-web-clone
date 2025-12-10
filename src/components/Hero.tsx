@@ -1,7 +1,6 @@
-import React from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import srcVideo from "../assets/videos/iphone-16-pro-hero.mp4";
+import { heroVideo } from "../utils";
 
 function Hero() {
   useGSAP(() => {
@@ -34,10 +33,10 @@ function Hero() {
             autoPlay
             muted
             playsInline={true}
-            key={srcVideo}
+            key={heroVideo}
             className="h-full w-full object-cover object-center"
           >
-            <source src={srcVideo} type="video/mp4" />
+            <source src={heroVideo} type="video/mp4" />
           </video>
         </div>
 
