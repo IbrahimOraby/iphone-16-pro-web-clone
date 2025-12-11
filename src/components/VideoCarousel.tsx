@@ -122,7 +122,7 @@ const VideoCarousel = () => {
     }).to(
       currentSlideTexts,
       {
-        opacity: 1,
+        opacity: 0.8,
         x: -5,
         duration: 0.5,
         ease: "power2.out"
@@ -136,15 +136,23 @@ const VideoCarousel = () => {
       trigger: "#carousel-container",
       start: "center bottom",
       //   toggleActions: "play none none none",
-      end: "top center", // when the carousel leaves the viewport
-      //   markers: true,
+      end: "bottom center", // when the carousel leaves the viewport
+    //   markers: true,
       onEnter: () => {
         gsap.to("#media-player", {
-          opacity: 1,
+          opacity: 0.8,
           duration: 2,
           y: -20,
           ease: "elastic",
           scale: 1.1
+        });
+      },
+      onLeave: () => {
+        gsap.to("#media-player", {
+          opacity: 0,
+          duration: 2,
+          ease: "elastic",
+          scale: 0.9
         });
       },
       onLeaveBack: () => {
@@ -153,6 +161,15 @@ const VideoCarousel = () => {
           duration: 2,
           ease: "elastic",
           scale: 0.9
+        });
+      },
+      onEnterBack: () => {
+        gsap.to("#media-player", {
+          opacity: 0.8,
+          duration: 2,
+          y: -20,
+          ease: "elastic",
+          scale: 1.1
         });
       }
     });
@@ -265,9 +282,9 @@ const VideoCarousel = () => {
 
   return (
     <>
-      <div className="relative mb-40" id="carousel-container">
+      <div className="relative" id="carousel-container">
         <div
-          className="fixed bottom-2 -translate-y-1/2 w-full justify-center z-1 opacity-0 "
+          className="fixed bottom-2 -translate-y-1/2 w-full justify-center z-1 opacity-0 h-13"
           id="media-player"
         >
           <div className="flex items-center justify-center gap-4 pointer-events-auto">
