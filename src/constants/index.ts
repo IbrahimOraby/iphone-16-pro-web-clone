@@ -8,8 +8,14 @@ import {
   highlightSixthView,
   highlightThirdView,
   whiteImg,
-  yellowImg
+  yellowImg,
+  titaniumImg1,
+  titaniumImg2,
+  titaniumImg3,
+  titaniumImg4
 } from "../utils";
+
+
 
 export const highlightsSlides = [
   {
@@ -98,3 +104,26 @@ export const sizes = [
   { label: '6.3"', value: "small" },
   { label: '6.9"', value: "large" },
 ];
+
+export const titaniumCarouselData = [
+  {
+    id: 1,
+    img: titaniumImg1,
+    text: "iPhone 16 Pro Max has our largest iPhone display ever"
+  },
+  {
+    id: 2,
+    img: titaniumImg2,
+    text: "The thinnest borders on any Apple product"
+  },
+  {
+    id: 3,
+    img: titaniumImg3,
+    text: "Premium Grade 5 titanium is exceptionally durable"
+  },
+  {
+    id: 4,
+    img: titaniumImg4,
+    text: "Four striking colors, from Black Titanium to new Desert Titanium"
+  }
+]

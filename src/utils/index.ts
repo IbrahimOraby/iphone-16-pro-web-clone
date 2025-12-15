@@ -10,6 +10,12 @@ import blue from "../assets/images/v0/blue.jpg"
 import white from "../assets/images/v0/white.jpg"
 import black from "../assets/images/v0/black.jpg"
 
+import titanium from "../assets/videos/titanium.mp4"
+import titanium1 from "../assets/images/titaniumImg1.jpg";
+import titanium2 from "../assets/images/titaniumImg2.jpg";
+import titanium3 from "../assets/images/titaniumImg3.jpg";
+import titanium4 from "../assets/images/titaniumImg4.jpg";
+
 
 export const heroVideo = iphoneProHero;
 export const highlightFirstView = highlightFirst;
@@ -23,3 +29,8 @@ export const yellowImg = yellow;
 export const blueImg = blue;
 export const whiteImg = white;
 export const blackImg = black;
+export const titaniumVideo = titanium;
+export const titaniumImg1 = titanium1;
+export const titaniumImg2 = titanium2;
+export const titaniumImg3 = titanium3;
+export const titaniumImg4 = titanium4;

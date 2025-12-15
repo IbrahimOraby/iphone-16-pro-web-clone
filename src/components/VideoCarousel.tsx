@@ -135,40 +135,75 @@ const VideoCarousel = () => {
     ScrollTrigger.create({
       trigger: "#carousel-container",
       start: "center bottom",
-      //   toggleActions: "play none none none",
-      end: "bottom center", // when the carousel leaves the viewport
-    //   markers: true,
+      end: "bottom center",
       onEnter: () => {
+        // Kill any existing animations first
+        gsap.killTweensOf("#media-player");
+        gsap.killTweensOf("#model-picker");
+        
+        // Immediately hide the model picker when media player becomes active
+        gsap.set("#model-picker", { 
+          zIndex: 40, 
+          opacity: 0,  // Hide immediately
+          scale: 0.9,
+          y: 0
+        });
+        
+        // Set z-index immediately for media player
+        gsap.set("#media-player", { zIndex: 60 });
+        
+        // Animate only opacity and transform for media player
         gsap.to("#media-player", {
           opacity: 0.8,
-          duration: 2,
+          duration: 0.5,
+          delay: 0,
           y: -20,
-          ease: "elastic",
+          ease: "power2.inOut",
           scale: 1.1
         });
       },
       onLeave: () => {
-        gsap.to("#media-player", {
+        gsap.killTweensOf("#media-player");
+        gsap.set("#media-player", { zIndex: 50 });
+        // Hide immediately, no animation delay
+        gsap.set("#media-player", { 
           opacity: 0,
-          duration: 2,
-          ease: "elastic",
-          scale: 0.9
+          scale: 0.9,
+          y: 0
         });
       },
       onLeaveBack: () => {
-        gsap.to("#media-player", {
+        gsap.killTweensOf("#media-player");
+        gsap.set("#media-player", { zIndex: 50 });
+        // Hide immediately
+        gsap.set("#media-player", { 
           opacity: 0,
-          duration: 2,
-          ease: "elastic",
-          scale: 0.9
+          scale: 0.9,
+          y: 0
         });
       },
       onEnterBack: () => {
+        // Kill any existing animations first
+        gsap.killTweensOf("#media-player");
+        gsap.killTweensOf("#model-picker");
+        
+        // Immediately hide the model picker
+        gsap.set("#model-picker", { 
+          zIndex: 40, 
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        
+        // Set z-index immediately
+        gsap.set("#media-player", { zIndex: 60 });
+        
         gsap.to("#media-player", {
           opacity: 0.8,
-          duration: 2,
+          duration: 0.5,
+          delay: 0,
           y: -20,
-          ease: "elastic",
+          ease: "power2.inOut",
           scale: 1.1
         });
       }
@@ -284,7 +319,7 @@ const VideoCarousel = () => {
     <>
       <div className="relative" id="carousel-container">
         <div
-          className="fixed bottom-2 -translate-y-1/2 w-full justify-center z-1 opacity-0 h-13"
+          className="fixed bottom-2 -translate-y-1/2 w-full justify-center z-[60] pointer-events-auto opacity-0 h-13"
           id="media-player"
         >
           <div className="flex items-center justify-center gap-4 pointer-events-auto">
@@ -301,7 +336,7 @@ const VideoCarousel = () => {
               {isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
             </button>
 
-            <div className="flex items-center justify-center py-5 px-7 bg-neutral-700 backdrop-blur rounded-full gap-2">
+            <div className="flex items-center justify-center py-5 px-7 bg-neutral-700 backdrop-blur rounded-full gap-2 ">
               {videoRef.current.map((_, i) => (
                 <span
                   key={i}
@@ -317,7 +352,7 @@ const VideoCarousel = () => {
             </div>
           </div>
         </div>
-        <div className="flex items-center ml-[95px] gap-5 relative">
+        <div className="flex items-center ml-[95px] gap-5 relative highlights-carousel translate-y-14 opacity-0">
           {highlightsSlides.map((list, i) => (
             <div className="slider-item" id="slider" key={list.id}>
               <div className="relative w-[87vw] h-[710px]">

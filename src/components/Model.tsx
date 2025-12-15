@@ -65,40 +65,75 @@ function Model() {
     ScrollTrigger.create({
       trigger: "#model-container",
       start: "15% bottom",
-      //   toggleActions: "play none none none",
-      end: "bottom center", // when the carousel leaves the viewport
-        // markers: true,
+      end: "bottom center",
       onEnter: () => {
+        // Kill any existing animations first
+        gsap.killTweensOf("#model-picker");
+        gsap.killTweensOf("#media-player");
+        
+        // Immediately hide the media player when model picker becomes active
+        gsap.set("#media-player", { 
+          zIndex: 40, 
+          opacity: 0,  // Hide immediately
+          scale: 0.9,
+          y: 0
+        });
+        
+        // Set z-index immediately for model picker
+        gsap.set("#model-picker", { zIndex: 60 });
+        
+        // Animate only opacity and transform for model picker
         gsap.to("#model-picker", {
           opacity: 0.8,
-          duration: 2,
+          duration: 0.5,
+          delay: 0,
           y: -20,
-          ease: "elastic",
+          ease: "power2.inOut",
           scale: 1.1
         });
       },
       onLeave: () => {
-        gsap.to("#model-picker", {
+        gsap.killTweensOf("#model-picker");
+        gsap.set("#model-picker", { zIndex: 10 });
+        // Hide immediately, no animation delay
+        gsap.set("#model-picker", { 
           opacity: 0,
-          duration: 2,
-          ease: "elastic",
-          scale: 0.9
+          scale: 0.9,
+          y: 0
         });
       },
       onLeaveBack: () => {
-        gsap.to("#model-picker", {
+        gsap.killTweensOf("#model-picker");
+        gsap.set("#model-picker", { zIndex: 10 });
+        // Hide immediately
+        gsap.set("#model-picker", { 
           opacity: 0,
-          duration: 2,
-          ease: "elastic",
-          scale: 0.9
+          scale: 0.9,
+          y: 0
         });
       },
       onEnterBack: () => {
+        // Kill any existing animations first
+        gsap.killTweensOf("#model-picker");
+        gsap.killTweensOf("#media-player");
+        
+        // Immediately hide the media player
+        gsap.set("#media-player", { 
+          zIndex: 40, 
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        
+        // Set z-index immediately
+        gsap.set("#model-picker", { zIndex: 60 });
+        
         gsap.to("#model-picker", {
           opacity: 0.8,
-          duration: 2,
+          duration: 0.5,
+          delay: 0,
           y: -20,
-          ease: "elastic",
+          ease: "power2.inOut",
           scale: 1.1
         });
       }
@@ -123,7 +158,7 @@ function Model() {
             <div className="w-full h-[75vh] md:h-[90vh] overflow-hidden relative">
               {/* Model Picker UI */}
               <div
-                className="fixed bottom-7 left-1/2 -translate-x-1/2 w-full max-w-sm z-10 opacity-0"
+                className="fixed bottom-7 left-1/2 -translate-x-1/2 w-full max-w-sm z-[60] pointer-events-auto opacity-0"
                 id="model-picker"
               >
                 <p className="text-xs font-semibold leading-4 text-center mb-5">
@@ -139,7 +174,7 @@ function Model() {
                         className="rounded-full bg-transparent border-b border-b-white"
                       >
                         <li
-                          className="w-7 h-7 rounded-full m-0 cursor-pointer"
+                          className={`w-7 h-7 rounded-full m-0 cursor-pointer ${model.color === item.color ? "ring-2 ring-white ring-offset-2 ring-offset-black" : ""}`}
                           style={{ backgroundColor: item.color[0] }}
                           onClick={() => setModel(item)}
                         />
@@ -196,7 +231,8 @@ function Model() {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  pointerEvents: "none"
+                  pointerEvents: "none",
+                  zIndex: 1  // Explicitly below both pickers
                 }}
                 eventSource={document.getElementById("root")}
                 eventPrefix="client"
