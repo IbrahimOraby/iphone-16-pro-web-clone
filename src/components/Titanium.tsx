@@ -11,6 +11,7 @@ function Titanium() {
   useGSAP(() => {
     gsap.to(videoRef.current, {
       opacity: 1,
+      scale: 1.08,
       delay: 0.5,
       scrollTrigger: {
         trigger: videoRef.current,
@@ -22,7 +23,7 @@ function Titanium() {
   }, []);
 
   return (
-    <section className="w-full overflow-hidden bg-custom-black py-40 text-custom-white">
+    <section className="w-full overflow-hidden bg-custom-black mt-20 text-custom-white">
       <div className=" w-[87.5%] mx-auto text-center flex flex-col items-center pb-24 leading-[1.1]">
         <h1 className="text-[80px] font-semibold text-custom-gray-100 opacity-100">
           Strength. Beauty.
@@ -42,8 +43,11 @@ function Titanium() {
           ref={videoRef}
           src={titaniumVideo}
           autoPlay
+          preload="auto"
           muted
-          className="w-full h-full object-cover opacity-0 scale-108"
+          playsInline={true}
+          key={titaniumVideo}
+          className="w-full h-full object-cover opacity-0"
         />
       </div>
 
@@ -83,13 +87,19 @@ function Titanium() {
           <p className="text-custom-gray-200">
             New display technology allows us to route display data under active
             pixels with no distortion, resulting in thinner borders for larger
-            6.3-inch and 6.9-inch <span className="text-custom-white-100">Super Retina XDR displays</span> that feel great in
-            the hand.
+            6.3-inch and 6.9-inch{" "}
+            <span className="text-custom-white-100">
+              Super Retina XDR displays
+            </span>{" "}
+            that feel great in the hand.
           </p>
 
           <p className="text-custom-gray-200">
             iPhone 16 Pro is splash, water, and dust resistant. It's also
-            remarkably durable, <span className="text-custom-white-100">with our latest-generation Ceramic Shield front.</span>
+            remarkably durable,{" "}
+            <span className="text-custom-white-100">
+              with our latest-generation Ceramic Shield front.
+            </span>
           </p>
         </div>
       </div>

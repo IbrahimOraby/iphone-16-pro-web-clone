@@ -1,7 +1,7 @@
 export const leftArrowIcon = () => {
   return (
     <svg
-      className="icon-control icon-cont}ize-8"
+      className="icon-control icon-control-chevronleft fill-custom-white"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 36 36"
     >
@@ -13,7 +13,7 @@ export const leftArrowIcon = () => {
 export const rightArrowIcon = () => {
   return (
     <svg
-      className="icon-control icon-contr"
+      className="icon-control icon-control-chevronright fill-custom-white"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 36 36"
     >

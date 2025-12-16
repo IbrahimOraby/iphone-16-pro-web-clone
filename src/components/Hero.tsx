@@ -18,7 +18,7 @@ function Hero() {
 
   }, []);
   return (
-    <section className="w-full  min-h-svh bg-custom-black relative pb-16">
+    <section className="w-full  min-h-svh bg-custom-black relative ">
       <div className="w-full flex-center flex-col bg-custom-black relative">
         <div className="absolute top-2/12 left-1/2 -translate-x-1/2">
           <p
@@ -40,8 +40,8 @@ function Hero() {
           </video>
         </div>
 
-        <div id ="cta" className="flex flex-col items-center  absolute bottom-2/12 left-1/2 -translate-x-1/2 opacity-0">
-          <button className="bg-custom-blue text-custom-white-100 text-lg font-normal py-2 px-4 rounded-full cursor-pointer ">Buy</button>
+        <div id ="cta" className="flex flex-col items-center  absolute bottom-50 left-1/2 -translate-x-1/2 opacity-0">
+          <button className="bg-custom-blue-200 text-custom-white-100 text-lg font-normal py-2 px-4 rounded-full cursor-pointer ">Buy</button>
         </div>
       </div>
     </section>

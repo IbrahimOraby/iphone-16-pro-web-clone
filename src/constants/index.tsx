@@ -1,3 +1,4 @@
+import React from "react";
 import {
   blackImg,
   blueImg,
@@ -12,10 +13,12 @@ import {
   titaniumImg1,
   titaniumImg2,
   titaniumImg3,
-  titaniumImg4
+  titaniumImg4,
+  camera2Video,
+  camera1Video,
+  camera3Video,
+  camera4Video
 } from "../utils";
-
-
 
 export const highlightsSlides = [
   {
@@ -102,7 +105,7 @@ export const models = [
 
 export const sizes = [
   { label: '6.3"', value: "small" },
-  { label: '6.9"', value: "large" },
+  { label: '6.9"', value: "large" }
 ];
 
 export const titaniumCarouselData = [
@@ -126,4 +129,72 @@ export const titaniumCarouselData = [
     img: titaniumImg4,
     text: "Four striking colors, from Black Titanium to new Desert Titanium"
   }
-]
+];
+
+export const cameraControlData = [
+  {
+    id: 1,
+    video: camera1Video,
+    text: [
+      <p
+        key="0"
+        className="font-semibold text-[17px]  text-custom-gray-200"
+      >
+        Click to launch the Camera app.
+      </p>,
+      <p
+        key="1"
+        className="font-semibold text-[17px] text-custom-gray-200"
+      >
+        Click again to{" "}
+        <span className="text-custom-white-100">instantly take a photo</span>.
+      </p>
+    ]
+  },
+  {
+    id: 2,
+    video: camera2Video,
+    text: [
+      <p
+        key="0"
+        className="font-semibold text-[17px] leading-[1.1] text-custom-gray-200"
+      >
+        Click and hold to{" "}
+        <span className="text-custom-white-100">start recording video</span>.
+      </p>
+    ]
+  },
+  {
+    id: 3,
+    video: camera3Video,
+    text: [
+      <p
+        key="0"
+        className="font-semibold text-[17px] leading-[1.1] text-custom-gray-200"
+      >
+        A light press{" "}
+        <span className="text-custom-white-100">opens controls like zoom</span>.
+      </p>
+    ]
+  },
+  {
+    id: 4,
+    video: camera4Video,
+    text: [
+      <p
+        key="0"
+        className="font-semibold text-[17px] leading-[1.1] text-custom-gray-200"
+      >
+        With a double light press, you can{" "}
+        <span className="text-custom-white-100">select another</span>
+      </p>,
+      <p
+        key="1"
+        className="font-semibold text-[17px] leading-[1.1] text-custom-gray-200"
+      >
+        <span className="text-custom-white-100">camera setting</span>. Then
+        slide to adjust that setting.
+      </p>
+    ]
+  }
+];

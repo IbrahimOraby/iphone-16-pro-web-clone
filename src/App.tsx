@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import Highlights from "./components/Highlights";
 import Model from "./components/Model";
 import Titanium from "./components/Titanium";
+import CameraControl from "./components/CameraControl";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -16,6 +17,7 @@ function App() {
         <Highlights />
         <Model/>
         <Titanium/>
+        <CameraControl/>
       </Layout>
     </>
   );

@@ -20,7 +20,9 @@ function Model() {
     color: ["#8F8A81", "#FFE7B9", "#6F6C64"],
     img: yellowImg
   });
-
+  
+  const [isModelPickerVisible, setIsModelPickerVisible] = useState(false);
+  
   const cameraControlSmall = useRef();
   const cameraControlLarge = useRef();
   const small = useRef(new THREE.Group());
@@ -71,10 +73,13 @@ function Model() {
         gsap.killTweensOf("#model-picker");
         gsap.killTweensOf("#media-player");
         
+        // Set visibility state
+        setIsModelPickerVisible(true);
+        
         // Immediately hide the media player when model picker becomes active
         gsap.set("#media-player", { 
           zIndex: 40, 
-          opacity: 0,  // Hide immediately
+          opacity: 0,
           scale: 0.9,
           y: 0
         });
@@ -95,6 +100,10 @@ function Model() {
       onLeave: () => {
         gsap.killTweensOf("#model-picker");
         gsap.set("#model-picker", { zIndex: 10 });
+        
+        // Set visibility state
+        setIsModelPickerVisible(false);
+        
         // Hide immediately, no animation delay
         gsap.set("#model-picker", { 
           opacity: 0,
@@ -105,6 +114,10 @@ function Model() {
       onLeaveBack: () => {
         gsap.killTweensOf("#model-picker");
         gsap.set("#model-picker", { zIndex: 10 });
+        
+        // Set visibility state
+        setIsModelPickerVisible(false);
+        
         // Hide immediately
         gsap.set("#model-picker", { 
           opacity: 0,
@@ -116,6 +129,9 @@ function Model() {
         // Kill any existing animations first
         gsap.killTweensOf("#model-picker");
         gsap.killTweensOf("#media-player");
+        
+        // Set visibility state
+        setIsModelPickerVisible(true);
         
         // Immediately hide the media player
         gsap.set("#media-player", { 
@@ -158,7 +174,7 @@ function Model() {
             <div className="w-full h-[75vh] md:h-[90vh] overflow-hidden relative">
               {/* Model Picker UI */}
               <div
-                className="fixed bottom-7 left-1/2 -translate-x-1/2 w-full max-w-sm z-[60] pointer-events-auto opacity-0"
+                className={`fixed bottom-7 left-1/2 -translate-x-1/2 w-full max-w-sm z-[60] pointer-events-auto opacity-0 ${isModelPickerVisible ? '' : 'hidden'}`}
                 id="model-picker"
               >
                 <p className="text-xs font-semibold leading-4 text-center mb-5">

@@ -16,6 +16,13 @@ import titanium2 from "../assets/images/titaniumImg2.jpg";
 import titanium3 from "../assets/images/titaniumImg3.jpg";
 import titanium4 from "../assets/images/titaniumImg4.jpg";
 
+import cameraControl from "../assets/videos/camera-control.mp4";
+import camera1 from "../assets/videos/camera-1.mp4"
+import camera2 from "../assets/videos/camera-2.mp4"
+import camera3 from "../assets/videos/camera-3.mp4"
+import camera4 from "../assets/videos/camera-4.mp4"
+
+
 
 export const heroVideo = iphoneProHero;
 export const highlightFirstView = highlightFirst;
@@ -34,3 +41,9 @@ export const titaniumImg1 = titanium1;
 export const titaniumImg2 = titanium2;
 export const titaniumImg3 = titanium3;
 export const titaniumImg4 = titanium4;
+
+export const cameraControlVideo = cameraControl;
+export const camera1Video = camera1;
+export const camera2Video = camera2;
+export const camera3Video = camera3;
+export const camera4Video = camera4;
