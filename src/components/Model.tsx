@@ -15,14 +15,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Model() {
   const [size, setSize] = useState("small");
-  const [model, setModel] = useState({
-    title: `iPhone 16 Pro in Natural Titanium`,
-    color: ["#8F8A81", "#FFE7B9", "#6F6C64"],
-    img: yellowImg
-  });
-  
+  const [model, setModel] = useState(models[0]);
+
   const [isModelPickerVisible, setIsModelPickerVisible] = useState(false);
-  
+
   const cameraControlSmall = useRef();
   const cameraControlLarge = useRef();
   const small = useRef(new THREE.Group());
@@ -72,21 +68,21 @@ function Model() {
         // Kill any existing animations first
         gsap.killTweensOf("#model-picker");
         gsap.killTweensOf("#media-player");
-        
+
         // Set visibility state
         setIsModelPickerVisible(true);
-        
+
         // Immediately hide the media player when model picker becomes active
-        gsap.set("#media-player", { 
-          zIndex: 40, 
+        gsap.set("#media-player", {
+          zIndex: 40,
           opacity: 0,
           scale: 0.9,
           y: 0
         });
-        
+
         // Set z-index immediately for model picker
         gsap.set("#model-picker", { zIndex: 60 });
-        
+
         // Animate only opacity and transform for model picker
         gsap.to("#model-picker", {
           opacity: 0.8,
@@ -100,12 +96,12 @@ function Model() {
       onLeave: () => {
         gsap.killTweensOf("#model-picker");
         gsap.set("#model-picker", { zIndex: 10 });
-        
+
         // Set visibility state
         setIsModelPickerVisible(false);
-        
+
         // Hide immediately, no animation delay
-        gsap.set("#model-picker", { 
+        gsap.set("#model-picker", {
           opacity: 0,
           scale: 0.9,
           y: 0
@@ -114,12 +110,12 @@ function Model() {
       onLeaveBack: () => {
         gsap.killTweensOf("#model-picker");
         gsap.set("#model-picker", { zIndex: 10 });
-        
+
         // Set visibility state
         setIsModelPickerVisible(false);
-        
+
         // Hide immediately
-        gsap.set("#model-picker", { 
+        gsap.set("#model-picker", {
           opacity: 0,
           scale: 0.9,
           y: 0
@@ -129,21 +125,21 @@ function Model() {
         // Kill any existing animations first
         gsap.killTweensOf("#model-picker");
         gsap.killTweensOf("#media-player");
-        
+
         // Set visibility state
         setIsModelPickerVisible(true);
-        
+
         // Immediately hide the media player
-        gsap.set("#media-player", { 
-          zIndex: 40, 
+        gsap.set("#media-player", {
+          zIndex: 40,
           opacity: 0,
           scale: 0.9,
           y: 0
         });
-        
+
         // Set z-index immediately
         gsap.set("#model-picker", { zIndex: 60 });
-        
+
         gsap.to("#model-picker", {
           opacity: 0.8,
           duration: 0.5,
@@ -174,7 +170,9 @@ function Model() {
             <div className="w-full h-[75vh] md:h-[90vh] overflow-hidden relative">
               {/* Model Picker UI */}
               <div
-                className={`fixed bottom-7 left-1/2 -translate-x-1/2 w-full max-w-sm z-[60] pointer-events-auto opacity-0 ${isModelPickerVisible ? '' : 'hidden'}`}
+                className={`fixed bottom-7 left-1/2 -translate-x-1/2 w-full max-w-sm z-[60] pointer-events-auto opacity-0 ${
+                  isModelPickerVisible ? "" : "hidden"
+                }`}
                 id="model-picker"
               >
                 <p className="text-xs font-semibold leading-4 text-center mb-5">
@@ -190,7 +188,11 @@ function Model() {
                         className="rounded-full bg-transparent border-b border-b-white"
                       >
                         <li
-                          className={`w-7 h-7 rounded-full m-0 cursor-pointer ${model.color === item.color ? "ring-2 ring-white ring-offset-2 ring-offset-black" : ""}`}
+                          className={`w-7 h-7 rounded-full m-0 cursor-pointer ${
+                            model.id === item.id
+                              ? "ring-2 ring-white ring-offset-2 ring-offset-black"
+                              : ""
+                          }`}
                           style={{ backgroundColor: item.color[0] }}
                           onClick={() => setModel(item)}
                         />
@@ -248,7 +250,7 @@ function Model() {
                   left: 0,
                   right: 0,
                   pointerEvents: "none",
-                  zIndex: 1  // Explicitly below both pickers
+                  zIndex: 1 // Explicitly below both pickers
                 }}
                 eventSource={document.getElementById("root")}
                 eventPrefix="client"

@@ -198,3 +198,21 @@ export const cameraControlData = [
     ]
   }
 ];
+
+export const audioModes = [
+  {
+    title: "In-frame",
+    description:
+      "Only captures the voices of the people on camera, even if people off-camera are talking during the recording."
+  },
+  {
+    title: "Studio",
+    description:
+      "Makes voices sound like you're recording in a professional studio equipped with sound-dampening walls. Great for vloggers or podcasters because the recording will sound like the mic is close to the subject's mouth, even if it's a few feet away."
+  },
+  {
+    title: "Cinematic",
+    description:
+      "Captures all of the voices around you and consolidates them toward the front of the screen — just like sound is formatted for the movies."
+  }
+];

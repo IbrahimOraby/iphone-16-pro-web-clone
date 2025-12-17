@@ -22,6 +22,12 @@ import camera2 from "../assets/videos/camera-2.mp4"
 import camera3 from "../assets/videos/camera-3.mp4"
 import camera4 from "../assets/videos/camera-4.mp4"
 
+import dolbyVision from "../assets/videos/4kDolby.mp4"  
+
+import iphoneBlackFrame from "../assets/images/iphone-black-frame.png"
+
+import audioMix from "../assets/images/audio-mix.jpg";
+
 
 
 export const heroVideo = iphoneProHero;
@@ -46,4 +52,9 @@ export const cameraControlVideo = cameraControl;
 export const camera1Video = camera1;
 export const camera2Video = camera2;
 export const camera3Video = camera3;
-export const camera4Video = camera4;
+export const camera4Video = camera4; 
+
+export const dolbyVisionVideo = dolbyVision;
+
+export const iphoneBlackFrameImg = iphoneBlackFrame;
+export const audioMixImg = audioMix;

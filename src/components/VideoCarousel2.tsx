@@ -55,7 +55,7 @@ function VideoCarousel2() {
   }, [currentIndex]);
 
   useGSAP(() => {
-    gsap.to("#card-image", {
+    gsap.to("#card-video", {
       opacity: 1,
       duration: 1,
       stagger: 0.2,
@@ -63,7 +63,7 @@ function VideoCarousel2() {
       y: 0,
       ease: "power2.inOut",
       scrollTrigger: {
-        trigger: "#card-image",
+        trigger: "#card-video",
         start: "top 100%",
         toggleActions: "play none none none"
       }
@@ -148,7 +148,7 @@ function VideoCarousel2() {
             <div
               key={index}
               className="flex-none w-[512px] opacity-0 translate-y-10"
-              id="card-image"
+              id="card-video"
             >
               <div className="relative w-full h-[512px] bg-zinc-900 rounded-3xl overflow-hidden mb-6">
                 <video
