@@ -22,51 +22,55 @@ export default function ProVideo() {
           start: "top top",
           end: "+=200%",
           scrub: true,
-          pin: true
-          // markers: true,
+          pin: true,
         }
       });
 
-      // Background filter disappears IMMEDIATELY (instant)
+      // Background filter disappears
       tl.to(
         videoRef.current,
         {
           opacity: 1,
           duration: 0.1,
-          ease: "power2.inOut"
+          ease: "power2.inOut",
+          force3D: true
         },
-        0.04 // start at the very beginning
+        0.04
       );
 
-      // Text moves up and fades out (slower, happens after)
+      // Text moves up and fades out
       tl.to(
         textRef.current,
         {
           yPercent: -200,
           opacity: 0,
           duration: 0.1,
-          ease: "power2.inOut"
+          ease: "power2.inOut",
+          force3D: true
         },
-        0.04 // starts slightly after background disappears
+        0.04
       );
 
-      // Phone wrapper zooms out from 1.8 to 0.6
+      // Phone wrapper zooms out from 1.8 to 0.75
       tl.to(
         phoneWrapRef.current,
         {
           scale: 0.75,
-          scrub: true
+          scrub: true,
+          force3D: true
         },
         0.3
       );
 
+      // Alt video text appears
       tl.to(
         altVideoTextRef.current,
         {
           opacity: 1,
           y: 0,
           duration: 0.4,
-          ease: "power2.inOut"
+          ease: "power2.inOut",
+          force3D: true
         },
         0.4
       );
@@ -79,6 +83,7 @@ export default function ProVideo() {
       <div
         ref={containerRef}
         className="relative h-screen w-full overflow-hidden bg-custom-black"
+        style={{ willChange: "transform" }}
       >
         {/* Big text overlay */}
         <div
@@ -88,42 +93,49 @@ export default function ProVideo() {
           <div
             className="text-[80px] tracking-tighter font-semibold flex flex-col gap-0 text-center leading-[1.1]"
             ref={textRef}
+            style={{ willChange: "transform, opacity" }}
           >
             <h1>4K 120 fps Dolby Vision.</h1>
             <h1>Cinemasterful.</h1>
           </div>
         </div>
 
-        {/* Phone + Video wrapper - starts zoomed in at 1.8, then shrinks to 0.6 */}
-
+        {/* Phone + Video wrapper - starts zoomed in at 1.2, then shrinks to 0.6 */}
         <div
           ref={phoneWrapRef}
-          className="relative absolute left-1/2 top-1/2 h-full w-full "
+          className=" h-full w-full scale-[1.2] "
           style={{
-            transform: "translate(-50%, -50%) scale(1.20)",
-            transformOrigin: "50% 50%"
+            // transform: "translate(-50%, -50%) scale(1.2)",
+            // transformOrigin: "50% 50%",
+            // willChange: "transform"
           }}
         >
           {/* Video */}
-          <video
-            ref={videoRef}
-            src={dolbyVisionVideo}
-            autoPlay
-            muted
-            playsInline
-            className="absolute inset-0 h-full w-full rounded-[7rem] object-cover scale-98 background-custom-gray-300 opacity-60"
-          />
+          <div className="absolute inset-2 rounded-[152px] overflow-hidden">
+            <video
+              ref={videoRef}
+              src={dolbyVisionVideo}
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              className="absolute inset-0 h-full w-full object-cover background-custom-gray-300 opacity-60"
+              style={{ willChange: "opacity" }}
+            />
+          </div>
 
           {/* iPhone frame */}
           <img
             src={iphoneBlackFrameImg}
             alt=""
             className="pointer-events-none absolute inset-0 z-10 h-full w-full"
+            style={{ willChange: "transform" }}
           />
         </div>
         <p
           className="text-custom-gray-200 absolute bottom-8 left-1/2 -translate-x-1/2 translate-y-10 text-[14px] font-semibold opacity-0"
           ref={altVideoTextRef}
+          style={{ willChange: "transform, opacity" }}
         >
           A herd of Icelandic horses, captured in stunning 4K 120 fps Dolby
           Vision
@@ -131,7 +143,7 @@ export default function ProVideo() {
       </div>
 
       <div className="w-full h-full my-16">
-        <div className="w-[87.5%] mx-auto px-24 grid grid-cols-2 gap-28 text-[21px] font-semibold mb-20">
+        <div className="w-[61.5rem] mx-auto grid grid-cols-2 gap-28 text-[21px] font-semibold mb-20">
           <p className="text-custom-gray-200">
             iPhone 16 Pro takes video capture to a whole new level with{" "}
             <span className="text-custom-white-100">
@@ -151,7 +163,7 @@ export default function ProVideo() {
           </div>
         </div>
 
-        <div className="w-[87.5%] mx-auto px-24 grid grid-cols-2 gap-28 text-[21px] font-semibold ">
+        <div className="w-[61.5rem] mx-auto  grid grid-cols-2 gap-28 text-[21px] font-semibold ">
           <p className="text-custom-gray-200">
             And now you can{" "}
             <span className=" text-custom-white-100">
@@ -207,17 +219,14 @@ export default function ProVideo() {
         />
       </div>
       <div className="w-[87.5%] px-24 mx-auto mb-64">
-        {/* Grid with 3 columns on desktop, 1 on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-3  gap-12">
           {audioModes.map((mode, index) => (
             <div key={index} className="flex flex-col">
-              {/* Title with bottom border */}
-              <h3 className="text-xl md:text-2xl font-semibold text-white pb-4 border-b border-gray-600 mb-6">
+              <h3 className="text-2xl font-semibold text-custom-white pb-4 border-b border-gray-600 mb-6">
                 {mode.title}
               </h3>
 
-              {/* Description */}
-              <p className="text-sm md:text-base text-gray-400 leading-relaxed">
+              <p className="text-base text-custom-gray-200 leading-relaxed">
                 {mode.description}
               </p>
             </div>

@@ -17,7 +17,14 @@ import {
   camera2Video,
   camera1Video,
   camera3Video,
-  camera4Video
+  camera4Video,
+  lens1Img,
+  lens2Img,
+  lens3Img,
+  lens4Img,
+  lens5Img,
+  lens6Img,
+  lens7Img
 } from "../utils";
 
 export const highlightsSlides = [
@@ -136,16 +143,10 @@ export const cameraControlData = [
     id: 1,
     video: camera1Video,
     text: [
-      <p
-        key="0"
-        className="font-semibold text-[17px]  text-custom-gray-200"
-      >
+      <p key="0" className="font-semibold text-[17px]  text-custom-gray-200">
         Click to launch the Camera app.
       </p>,
-      <p
-        key="1"
-        className="font-semibold text-[17px] text-custom-gray-200"
-      >
+      <p key="1" className="font-semibold text-[17px] text-custom-gray-200">
         Click again to{" "}
         <span className="text-custom-white-100">instantly take a photo</span>.
       </p>
@@ -214,5 +215,50 @@ export const audioModes = [
     title: "Cinematic",
     description:
       "Captures all of the voices around you and consolidates them toward the front of the screen — just like sound is formatted for the movies."
+  }
+];
+
+export const lensExamples = [
+  {
+    label: "Macro",
+    zoomLevel: "0.5x",
+    mode: "Macro",
+    img: lens1Img
+  },
+  {
+    label: "13 mm",
+    zoomLevel: "0.5x",
+    mode: "Ultra Wide",
+    img: lens2Img
+  },
+  {
+    label: "24 mm",
+    zoomLevel: "1x",
+    mode: "Fusion 24 mm",
+    img: lens3Img
+  },
+  {
+    label: "28 mm",
+    zoomLevel: "1.2x",
+    mode: "Fusion 28 mm",
+    img: lens4Img
+  },
+  {
+    label: "35 mm",
+    zoomLevel: "1.5x",
+    mode: "Fusion 35 mm",
+    img: lens5Img
+  },
+  {
+    label: "48 mm",
+    zoomLevel: "2x",
+    mode: "Telephoto",
+    img: lens6Img
+  },
+  {
+    label: "120 mm",
+    zoomLevel: "5x",
+    mode: "Telephoto",
+    img: lens7Img
   }
 ];

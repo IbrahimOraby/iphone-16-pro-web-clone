@@ -2,9 +2,11 @@
 @theme {
   --color-custom-black: #000000;
 
-  --color-custom-gray-300: #1d1d1f;
   --color-custom-gray-100: rgba(255, 255, 255, 0.8);
   --color-custom-gray-200: #86868b;
+  --color-custom-gray-250: #333336;
+  --color-custom-gray-300: #1d1d1f;
+
 
   --color-custom-blue-100: #2997ff;
   --color-custom-blue-200: #0076df;

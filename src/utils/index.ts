@@ -25,8 +25,20 @@ import camera4 from "../assets/videos/camera-4.mp4"
 import dolbyVision from "../assets/videos/4kDolby.mp4"  
 
 import iphoneBlackFrame from "../assets/images/iphone-black-frame.png"
+import iphoneGoldFrame from "../assets/images/iphone-gold-frame.png"
 
 import audioMix from "../assets/images/audio-mix.jpg";
+
+import telephoto from "../assets/images/telephoto.jpg"
+
+import lens1 from "../assets/images/lens-1.jpg"
+import lens2 from "../assets/images/lens-2.jpg"
+import lens3 from "../assets/images/lens-3.jpg"
+import lens4 from "../assets/images/lens-4.jpg"
+import lens5 from "../assets/images/lens-5.jpg"
+import lens6 from "../assets/images/lens-6.jpg"
+import lens7 from "../assets/images/lens-7.jpg"
+import iphoneLens from "../assets/images/iphone-lens.jpg"
 
 
 
@@ -58,3 +70,16 @@ export const dolbyVisionVideo = dolbyVision;
 
 export const iphoneBlackFrameImg = iphoneBlackFrame;
 export const audioMixImg = audioMix;
+
+export const iphoneGoldFrameImg = iphoneGoldFrame;
+
+export const telephotoImg = telephoto;
+
+export const lens1Img = lens1;
+export const lens2Img = lens2;
+export const lens3Img = lens3;
+export const lens4Img = lens4;
+export const lens5Img = lens5;
+export const lens6Img = lens6;
+export const lens7Img = lens7;
+export const iphoneLensImg = iphoneLens;

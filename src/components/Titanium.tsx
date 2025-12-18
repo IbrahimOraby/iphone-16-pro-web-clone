@@ -53,7 +53,7 @@ function Titanium() {
 
       <div className="w-full h-full bg-linear-to-b from-custom-black via-custom-brown to-custom-black py-72">
         {/* First row - Two columns */}
-        <div className="w-[87.5%] mx-auto px-24 grid grid-cols-2 gap-48 text-[21px] font-semibold mb-20">
+        <div className="w-[61.5rem] mx-auto grid grid-cols-2 gap-48 text-[21px] font-semibold mb-20">
           <p className="text-custom-gray-200">
             iPhone 16 Pro features a Grade 5 titanium design with a new, refined
             microblasted finish. Titanium has one of the highest
@@ -83,7 +83,7 @@ function Titanium() {
         </div>
 
         {/* Third row - Two columns */}
-        <div className="w-[87.5%] mx-auto px-24 grid grid-cols-2 gap-48 text-[21px] font-semibold">
+        <div className="w-[61.5rem] mx-auto  grid grid-cols-2 gap-48 text-[21px] font-semibold">
           <p className="text-custom-gray-200">
             New display technology allows us to route display data under active
             pixels with no distortion, resulting in thinner borders for larger

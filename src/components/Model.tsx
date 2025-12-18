@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useEffect, useRef, useState } from "react";
 import ModelView from "./ModelView";
-import { yellowImg } from "../utils";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { View } from "@react-three/drei";
@@ -18,6 +17,9 @@ function Model() {
   const [model, setModel] = useState(models[0]);
 
   const [isModelPickerVisible, setIsModelPickerVisible] = useState(false);
+
+  const slidingPillRef = useRef<HTMLDivElement>(null);
+  const sizeButtonRef = useRef<HTMLButtonElement>(null);
 
   const cameraControlSmall = useRef();
   const cameraControlLarge = useRef();
@@ -152,6 +154,23 @@ function Model() {
     });
   });
 
+  // Animate sliding pill with GSAP when size changes
+  useGSAP(() => {
+    if (!slidingPillRef.current || !sizeButtonRef.current) return;
+
+    const selectedIndex = sizes.findIndex((s) => s.value === size);
+    const buttonWidth = sizeButtonRef.current.offsetWidth;
+    const pillWidth = buttonWidth / sizes.length;
+    const translateX = selectedIndex * pillWidth;
+
+    gsap.to(slidingPillRef.current, {
+      x: translateX,
+      duration: 0.3,
+      ease: "power2.inOut",
+      force3D: true
+    });
+  }, { scope: sizeButtonRef, dependencies: [size] });
+
   return (
     <section className="w-full overflow-hidden bg-custom-black py-40 text-custom-white">
       <div>
@@ -200,14 +219,25 @@ function Model() {
                     ))}
                   </ul>
 
-                  <button className="flex items-center justify-center p-1 rounded-full bg-neutral-700 backdrop-blur ml-3 gap-1">
+                  <button
+                    ref={sizeButtonRef}
+                    className="relative flex items-center justify-center p-1 rounded-full bg-neutral-700 backdrop-blur ml-3 gap-1"
+                  >
+                    {/* Sliding pill background */}
+                    <div
+                      ref={slidingPillRef}
+                      className="absolute left-1 top-1 h-12 w-12 rounded-full bg-custom-white"
+                      style={{
+                        willChange: "transform"
+                      }}
+                    />
+
+                    {/* Size options */}
                     {sizes.map(({ label, value }) => (
                       <span
                         key={label}
-                        className="w-12 h-12 text-[16px] font-semibold leading-[21px] flex items-center justify-center bg-custom-white text-custom-black rounded-full transition-all duration-300 cursor-pointer"
+                        className="relative z-10 w-12 h-12 text-[16px] font-semibold leading-[21px] flex items-center justify-center rounded-full cursor-pointer"
                         style={{
-                          backgroundColor:
-                            size === value ? "white" : "transparent",
                           color: size === value ? "black" : "white"
                         }}
                         onClick={() => setSize(value)}
@@ -240,7 +270,6 @@ function Model() {
                 size={size}
               />
 
-              {/* Fixed Canvas Overlay - MOVED OUTSIDE AND FIXED POSITIONING */}
               <Canvas
                 className="w-full h-full"
                 style={{
@@ -250,7 +279,7 @@ function Model() {
                   left: 0,
                   right: 0,
                   pointerEvents: "none",
-                  zIndex: 1 // Explicitly below both pickers
+                  zIndex: 1 
                 }}
                 eventSource={document.getElementById("root")}
                 eventPrefix="client"
