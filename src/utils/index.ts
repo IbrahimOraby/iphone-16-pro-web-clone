@@ -40,6 +40,9 @@ import lens6 from "../assets/images/lens-6.jpg"
 import lens7 from "../assets/images/lens-7.jpg"
 import iphoneLens from "../assets/images/iphone-lens.jpg"
 
+import photographic1 from "../assets/images/photographic-1.jpg"
+import photographic2 from "../assets/images/photographic-2.jpg"
+import photographic3 from "../assets/images/photographic-3.jpg"
 
 
 export const heroVideo = iphoneProHero;
@@ -83,3 +86,7 @@ export const lens5Img = lens5;
 export const lens6Img = lens6;
 export const lens7Img = lens7;
 export const iphoneLensImg = iphoneLens;
+
+export const photographic1Img = photographic1;
+export const photographic2Img = photographic2;
+export const photographic3Img = photographic3;
