@@ -8,7 +8,7 @@ import Titanium from "./components/Titanium";
 import CameraControl from "./components/CameraControl";
 import ProVideo from "./components/ProVideo";
 import Telephoto from "./components/Telephoto";
-import HorizontalSlider from "./components/HorizontalSlider";
+import Photographic from "./components/Photographic";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -23,7 +23,7 @@ function App() {
         <CameraControl />
         <ProVideo />
         <Telephoto />
-        <HorizontalSlider />
+        <Photographic />
       </Layout>
     </>
   );

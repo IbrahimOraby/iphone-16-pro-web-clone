@@ -126,7 +126,7 @@ function CameraControl() {
 
       <div className="w-full h-full bg-linear-to-b from-custom-black to-custom-gray-300 py-30">
         {/* First row - Two columns */}
-        <div className="w-[61.5rem] mx-auto grid grid-cols-2 gap-48 text-[21px] font-semibold mb-20">
+        <div className="w-[61.5rem] mx-auto grid grid-cols-2 gap-48  mb-20">
           <p className="text-custom-gray-200">
             Now you can take the perfect photo or video in record time. Camera
             Control gives you an simpler{" "}

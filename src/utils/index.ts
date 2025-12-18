@@ -44,6 +44,11 @@ import photographic1 from "../assets/images/photographic-1.jpg"
 import photographic2 from "../assets/images/photographic-2.jpg"
 import photographic3 from "../assets/images/photographic-3.jpg"
 
+import styles1 from "../assets/images/styles-1.jpg"
+import styles2 from "../assets/images/styles-2.jpg"
+import styles3 from "../assets/images/styles-3.jpg"
+
+
 
 export const heroVideo = iphoneProHero;
 export const highlightFirstView = highlightFirst;
@@ -90,3 +95,7 @@ export const iphoneLensImg = iphoneLens;
 export const photographic1Img = photographic1;
 export const photographic2Img = photographic2;
 export const photographic3Img = photographic3;
+
+export const styles1Img = styles1;
+export const styles2Img = styles2;
+export const styles3Img = styles3;

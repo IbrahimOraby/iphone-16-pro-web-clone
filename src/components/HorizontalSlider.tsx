@@ -69,7 +69,7 @@ function HorizontalSlider() {
   return (
     <div
       ref={sliderRef}
-      className="relative w-full h-screen overflow-hidden"
+      className="relative w-full h-screen overflow-hidden my-16"
     >
       <img
         src={photographic1Img}
