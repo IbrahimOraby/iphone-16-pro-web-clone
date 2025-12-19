@@ -70,12 +70,33 @@ function Model() {
         // Kill any existing animations first
         gsap.killTweensOf("#model-picker");
         gsap.killTweensOf("#media-player");
+        gsap.killTweensOf("#control-deeper-look");
+        gsap.killTweensOf("#pro-deeper-look");
+        gsap.killTweensOf("#telephoto-deeper-look");
 
         // Set visibility state
         setIsModelPickerVisible(true);
 
-        // Immediately hide the media player when model picker becomes active
+        // Immediately hide all other buttons when model picker becomes active
         gsap.set("#media-player", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#control-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#pro-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#telephoto-deeper-look", {
           zIndex: 40,
           opacity: 0,
           scale: 0.9,
@@ -127,12 +148,33 @@ function Model() {
         // Kill any existing animations first
         gsap.killTweensOf("#model-picker");
         gsap.killTweensOf("#media-player");
+        gsap.killTweensOf("#control-deeper-look");
+        gsap.killTweensOf("#pro-deeper-look");
+        gsap.killTweensOf("#telephoto-deeper-look");
 
         // Set visibility state
         setIsModelPickerVisible(true);
 
-        // Immediately hide the media player
+        // Immediately hide all other buttons
         gsap.set("#media-player", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#control-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#pro-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#telephoto-deeper-look", {
           zIndex: 40,
           opacity: 0,
           scale: 0.9,

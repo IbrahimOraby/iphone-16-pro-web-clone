@@ -1,21 +1,23 @@
 import { useGSAP } from "@gsap/react";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { cameraControlVideo } from "../utils";
 import VideoCarousel2 from "./VideoCarousel2";
+import { rightArrowIcon } from "../icons";
 gsap.registerPlugin(ScrollTrigger);
 
 function CameraControl() {
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasEnded, setHasEnded] = useState(false);
+  const [isDeeperLookVisible, setIsDeeperLookVisible] = useState(false);
 
   useGSAP(() => {
     ScrollTrigger.create({
       trigger: videoRef.current,
       start: "top 80%",
-      once: true, 
+      once: true,
       onEnter: () => {
         videoRef.current?.play();
         setIsPlaying(true);
@@ -35,6 +37,142 @@ function CameraControl() {
       }
     });
   }, []);
+
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: "#camera-control-container",
+      start: "top bottom",
+      end: "bottom bottom",
+      // markers: true,
+      onEnter: () => {
+        // Kill any existing animations first
+        gsap.killTweensOf("#control-deeper-look");
+        gsap.killTweensOf("#media-player");
+        gsap.killTweensOf("#model-picker");
+        gsap.killTweensOf("#pro-deeper-look");
+        gsap.killTweensOf("#telephoto-deeper-look");
+        
+        // Set visibility state
+        setIsDeeperLookVisible(true);
+        
+        // Immediately hide all other buttons when deeper look becomes active
+        gsap.set("#media-player", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#model-picker", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#pro-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#telephoto-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        
+        // Set z-index immediately for deeper look button
+        gsap.set("#control-deeper-look", { zIndex: 60 });
+        
+        // Animate only opacity and transform for deeper look button
+        gsap.to("#control-deeper-look", {
+          opacity: 0.8,
+          duration: 0.5,
+          delay: 0,
+          y: -20,
+          ease: "power2.inOut",
+          scale: 1.1
+        });
+      },
+      onLeave: () => {
+        gsap.killTweensOf("#control-deeper-look");
+        gsap.set("#control-deeper-look", { zIndex: 50 });
+        
+        // Set visibility state
+        setIsDeeperLookVisible(false);
+        
+        // Hide immediately, no animation delay
+        gsap.set("#control-deeper-look", {
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+      },
+      onLeaveBack: () => {
+        gsap.killTweensOf("#control-deeper-look");
+        gsap.set("#control-deeper-look", { zIndex: 50 });
+        
+        // Set visibility state
+        setIsDeeperLookVisible(false);
+        
+        // Hide immediately
+        gsap.set("#control-deeper-look", {
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+      },
+      onEnterBack: () => {
+        // Kill any existing animations first
+        gsap.killTweensOf("#control-deeper-look");
+        gsap.killTweensOf("#media-player");
+        gsap.killTweensOf("#model-picker");
+        gsap.killTweensOf("#pro-deeper-look");
+        gsap.killTweensOf("#telephoto-deeper-look");
+        
+        // Set visibility state
+        setIsDeeperLookVisible(true);
+        
+        // Immediately hide all other buttons
+        gsap.set("#media-player", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#model-picker", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#pro-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#telephoto-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        
+        // Set z-index immediately
+        gsap.set("#control-deeper-look", { zIndex: 60 });
+        
+        gsap.to("#control-deeper-look", {
+          opacity: 0.8,
+          duration: 0.5,
+          delay: 0,
+          y: -20,
+          ease: "power2.inOut",
+          scale: 1.1
+        });
+      }
+    });
+  });
 
   // Function to replay video
   const handleReplay = () => {
@@ -67,7 +205,7 @@ function CameraControl() {
   };
 
   return (
-    <section className="w-full overflow-hidden bg-custom-black text-custom-white">
+    <section id="camera-control-container" className="w-full overflow-hidden bg-custom-black text-custom-white">
       <div className=" w-[87.5%] mx-auto text-center flex flex-col items-center pb-24 leading-[1.1]">
         <h1 className="text-[80px] font-semibold text-custom-gray-100 opacity-100">
           Take total
@@ -180,6 +318,17 @@ function CameraControl() {
             </span>
           </p>
         </div> */}
+      </div>
+      <div
+        className={`fixed bottom-7 left-1/2 -translate-x-1/2 bg-neutral-700 backdrop-blur px-3 py-3 rounded-full cursor-pointer z-[60] pointer-events-auto opacity-0 ${
+          isDeeperLookVisible ? "" : "hidden"
+        }`}
+        id="control-deeper-look"
+      >
+        <div className="flex items-center justify-center gap-4">
+          <p className="text-custom-white-100 text-[16px] font-semibold">Go Deeper on Camera Control</p>
+          <span className="text-custom-white-100 w-8 h-8 bg-custom-blue-100 rounded-full ">{rightArrowIcon()} </span>
+        </div>
       </div>
     </section>
   );

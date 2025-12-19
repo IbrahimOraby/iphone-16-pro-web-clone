@@ -21,7 +21,7 @@ function A18Pro() {
         onEnter: () => {
           videoRef.current?.play();
         },
-        markers: true
+        // markers: true
       }
     });
   }, []);

@@ -18,7 +18,7 @@ function Hero() {
 
   }, []);
   return (
-    <section className="w-full  min-h-svh bg-custom-black relative ">
+    <section id="hero-section" className="w-full  min-h-svh bg-custom-black relative ">
       <div className="w-full flex-center flex-col bg-custom-black relative">
         <div className="absolute top-2/12 left-1/2 -translate-x-1/2">
           <p

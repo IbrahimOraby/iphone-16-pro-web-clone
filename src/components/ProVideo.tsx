@@ -1,9 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { audioMixImg, dolbyVisionVideo, iphoneBlackFrameImg } from "../utils";
 import { audioModes } from "../constants";
+import { rightArrowIcon } from "../icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +15,7 @@ export default function ProVideo() {
   const phoneWrapRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const altVideoTextRef = useRef<HTMLDivElement>(null);
+  const [isDeeperLookVisible, setIsDeeperLookVisible] = useState(false);
   useGSAP(
     () => {
       const tl = gsap.timeline({
@@ -78,8 +80,143 @@ export default function ProVideo() {
     { scope: containerRef }
   );
 
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: "#pro-video-container",
+      start: "top bottom",
+      end: "bottom bottom",
+      onEnter: () => {
+        // Kill any existing animations first
+        gsap.killTweensOf("#pro-deeper-look");
+        gsap.killTweensOf("#media-player");
+        gsap.killTweensOf("#model-picker");
+        gsap.killTweensOf("#control-deeper-look");
+        gsap.killTweensOf("#telephoto-deeper-look");
+        
+        // Set visibility state
+        setIsDeeperLookVisible(true);
+        
+        // Immediately hide all other buttons when pro video button becomes active
+        gsap.set("#media-player", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#model-picker", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#control-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#telephoto-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        
+        // Set z-index immediately for pro video button
+        gsap.set("#pro-deeper-look", { zIndex: 60 });
+        
+        // Animate only opacity and transform for pro video button
+        gsap.to("#pro-deeper-look", {
+          opacity: 0.8,
+          duration: 0.5,
+          delay: 0,
+          y: -20,
+          ease: "power2.inOut",
+          scale: 1.1
+        });
+      },
+      onLeave: () => {
+        gsap.killTweensOf("#pro-deeper-look");
+        gsap.set("#pro-deeper-look", { zIndex: 50 });
+        
+        // Set visibility state
+        setIsDeeperLookVisible(false);
+        
+        // Hide immediately, no animation delay
+        gsap.set("#pro-deeper-look", {
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+      },
+      onLeaveBack: () => {
+        gsap.killTweensOf("#pro-deeper-look");
+        gsap.set("#pro-deeper-look", { zIndex: 50 });
+        
+        // Set visibility state
+        setIsDeeperLookVisible(false);
+        
+        // Hide immediately
+        gsap.set("#pro-deeper-look", {
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+      },
+      onEnterBack: () => {
+        // Kill any existing animations first
+        gsap.killTweensOf("#pro-deeper-look");
+        gsap.killTweensOf("#media-player");
+        gsap.killTweensOf("#model-picker");
+        gsap.killTweensOf("#control-deeper-look");
+        gsap.killTweensOf("#telephoto-deeper-look");
+        
+        // Set visibility state
+        setIsDeeperLookVisible(true);
+        
+        // Immediately hide all other buttons
+        gsap.set("#media-player", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#model-picker", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#control-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#telephoto-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        
+        // Set z-index immediately
+        gsap.set("#pro-deeper-look", { zIndex: 60 });
+        
+        gsap.to("#pro-deeper-look", {
+          opacity: 0.8,
+          duration: 0.5,
+          delay: 0,
+          y: -20,
+          ease: "power2.inOut",
+          scale: 1.1
+        });
+      }
+    });
+  });
+
   return (
-    <section className="w-full overflow-hidden bg-custom-black">
+    <section id="pro-video-container" className="w-full overflow-hidden bg-custom-black">
       <div
         ref={containerRef}
         className="relative h-screen w-full overflow-hidden bg-custom-black"
@@ -231,6 +368,18 @@ export default function ProVideo() {
               </p>
             </div>
           ))}
+        </div>
+      </div>
+
+      <div
+        className={`fixed bottom-7 left-1/2 -translate-x-1/2 bg-neutral-700 backdrop-blur px-3 py-3 rounded-full cursor-pointer z-[60] pointer-events-auto opacity-0 ${
+          isDeeperLookVisible ? "" : "hidden"
+        }`}
+        id="pro-deeper-look"
+      >
+        <div className="flex items-center justify-center gap-4">
+          <p className="text-custom-white-100 text-[16px] font-semibold">Nerd out on Pro Video</p>
+          <span className="text-custom-white-100 w-8 h-8 bg-custom-blue-100 rounded-full ">{rightArrowIcon()} </span>
         </div>
       </div>
     </section>

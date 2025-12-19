@@ -114,13 +114,34 @@ const VideoCarousel = () => {
         // Kill any existing animations first
         gsap.killTweensOf("#media-player");
         gsap.killTweensOf("#model-picker");
+        gsap.killTweensOf("#control-deeper-look");
+        gsap.killTweensOf("#pro-deeper-look");
+        gsap.killTweensOf("#telephoto-deeper-look");
         
         // Set visibility state
         setIsMediaPlayerVisible(true);
         
-        // Immediately hide the model picker when media player becomes active
+        // Immediately hide all other buttons when media player becomes active
         gsap.set("#model-picker", { 
           zIndex: 40, 
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#control-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#pro-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#telephoto-deeper-look", {
+          zIndex: 40,
           opacity: 0,
           scale: 0.9,
           y: 0
@@ -171,13 +192,34 @@ const VideoCarousel = () => {
         // Kill any existing animations first
         gsap.killTweensOf("#media-player");
         gsap.killTweensOf("#model-picker");
+        gsap.killTweensOf("#control-deeper-look");
+        gsap.killTweensOf("#pro-deeper-look");
+        gsap.killTweensOf("#telephoto-deeper-look");
         
         // Set visibility state
         setIsMediaPlayerVisible(true);
         
-        // Immediately hide the model picker
+        // Immediately hide all other buttons
         gsap.set("#model-picker", { 
           zIndex: 40, 
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#control-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#pro-deeper-look", {
+          zIndex: 40,
+          opacity: 0,
+          scale: 0.9,
+          y: 0
+        });
+        gsap.set("#telephoto-deeper-look", {
+          zIndex: 40,
           opacity: 0,
           scale: 0.9,
           y: 0
