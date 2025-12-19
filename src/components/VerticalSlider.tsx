@@ -102,7 +102,7 @@ function VerticalSlider() {
   return (
     <div
       ref={containerRef}
-      className="container flex gap-50 w-[61.5rem] mx-auto h-full"
+      className="container flex gap-50 w-[61.5rem] mx-auto h-full "
     >
       <div
         ref={panelsContainerRef}

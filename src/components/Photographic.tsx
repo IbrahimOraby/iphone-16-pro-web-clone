@@ -41,7 +41,6 @@ function Photographic() {
       </div>
       
       <VerticalSlider />
-      <div className="w-full h-[1000px] bg-custom-white"></div>
     </section>
   );
 }

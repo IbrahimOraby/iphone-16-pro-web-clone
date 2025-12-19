@@ -48,6 +48,9 @@ import styles1 from "../assets/images/styles-1.jpg"
 import styles2 from "../assets/images/styles-2.jpg"
 import styles3 from "../assets/images/styles-3.jpg"
 
+import a18Pro from "../assets/videos/a18pro.mp4"
+import gaming from "../assets/images/gaming.jpg"
+
 
 
 export const heroVideo = iphoneProHero;
@@ -99,3 +102,6 @@ export const photographic3Img = photographic3;
 export const styles1Img = styles1;
 export const styles2Img = styles2;
 export const styles3Img = styles3;
+
+export const a18ProVideo = a18Pro;
+export const gamingImg = gaming;

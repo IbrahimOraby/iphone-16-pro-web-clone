@@ -15,7 +15,7 @@ function CameraControl() {
     ScrollTrigger.create({
       trigger: videoRef.current,
       start: "top 80%",
-      once: true, // Only trigger once
+      once: true, 
       onEnter: () => {
         videoRef.current?.play();
         setIsPlaying(true);

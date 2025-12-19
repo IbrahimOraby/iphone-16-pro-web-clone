@@ -9,6 +9,7 @@ import CameraControl from "./components/CameraControl";
 import ProVideo from "./components/ProVideo";
 import Telephoto from "./components/Telephoto";
 import Photographic from "./components/Photographic";
+import A18Pro from "./components/A18Pro";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -24,6 +25,7 @@ function App() {
         <ProVideo />
         <Telephoto />
         <Photographic />
+        <A18Pro />
       </Layout>
     </>
   );
