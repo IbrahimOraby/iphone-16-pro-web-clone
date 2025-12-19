@@ -2,7 +2,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ModelView from "./ModelView";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
@@ -21,8 +21,8 @@ function Model() {
   const slidingPillRef = useRef<HTMLDivElement>(null);
   const sizeButtonRef = useRef<HTMLButtonElement>(null);
 
-  const cameraControlSmall = useRef();
-  const cameraControlLarge = useRef();
+  const cameraControlSmall = useRef<any>(null);
+  const cameraControlLarge = useRef<any>(null);
   const small = useRef(new THREE.Group());
   const large = useRef(new THREE.Group());
   const [smallRotation, setSmallRotation] = useState(0);
@@ -323,7 +323,7 @@ function Model() {
                   pointerEvents: "none",
                   zIndex: 1 
                 }}
-                eventSource={document.getElementById("root")}
+                eventSource={document.getElementById("root") || undefined}
                 eventPrefix="client"
               >
                 <View.Port />

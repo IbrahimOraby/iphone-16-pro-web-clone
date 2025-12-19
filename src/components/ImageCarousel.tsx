@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { titaniumCarouselData } from "../constants";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";

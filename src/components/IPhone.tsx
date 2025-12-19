@@ -8,13 +8,22 @@ Title: Apple iPhone 15 Pro Max Black
 */
 
 import * as THREE from 'three';
-import React, { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 
-function Model(props) {
-  const { nodes, materials } = useGLTF("/models/scene.glb");
+interface ModelProps {
+  item: {
+    img: string;
+    color: string[];
+  };
+  scale?: [number, number, number];
+  size?: string;
+}
 
-  const texture = useTexture(props.item.img);
+function Model(props: ModelProps) {
+  const { nodes, materials } = useGLTF("/models/scene.glb") as any;
+
+  const texture = useTexture(props.item.img) as THREE.Texture;
 
     useEffect(() => {
       Object.entries(materials).map((material) => {
@@ -26,9 +35,9 @@ function Model(props) {
           material[0] !== "jlzuBkUzuJqgiAK" &&
           material[0] !== "xNrofRCqOXXHVZt"
         ) {
-          material[1].color = new THREE.Color(props.item.color[0]);
+          (material[1] as THREE.MeshStandardMaterial).color = new THREE.Color(props.item.color[0]);
+          (material[1] as THREE.MeshStandardMaterial).needsUpdate = true;
         }
-        material[1].needsUpdate = true;
       });
     }, [materials, props.item]);
   
@@ -146,7 +155,7 @@ function Model(props) {
         material={materials.pIJKfZsazmcpEiU}
         scale={0.01}
       >
-        <meshStandardMaterial roughness={1} map={texture} />
+        <meshStandardMaterial roughness={1} map={Array.isArray(texture) ? texture[0] : texture} />
       </mesh>
       <mesh
         castShadow

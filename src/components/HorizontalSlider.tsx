@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { photographic1Img, photographic2Img, photographic3Img } from "../utils";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

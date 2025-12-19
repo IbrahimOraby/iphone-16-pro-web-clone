@@ -1,4 +1,3 @@
-import React from "react";
 import HorizontalSlider from "./HorizontalSlider";
 import VerticalSlider from "./VerticalSlider";
 

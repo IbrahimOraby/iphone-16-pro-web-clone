@@ -4,6 +4,17 @@ import * as THREE from "three";
 import Lights from "./Lights";
 import IPhone from "./IPhone";
 import { Suspense } from "react";
+import type { RefObject } from "react";
+
+interface ModelViewProps {
+  index: number;
+  groupRef: RefObject<THREE.Group>;
+  gsapType: string;
+  controlRef: RefObject<any>;
+  setRotationState: (rotation: number) => void;
+  size: string;
+  item: any;
+}
 
 const ModelView = ({
   index,
@@ -13,7 +24,7 @@ const ModelView = ({
   setRotationState,
   size,
   item
-}) => {
+}: ModelViewProps) => {
   return (
     <View
       index={index}

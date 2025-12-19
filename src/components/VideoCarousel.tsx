@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { highlightsSlides } from "../constants";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -21,7 +21,7 @@ const VideoCarousel = () => {
   //   const videoDivRef = useRef([]);
   const videoRef = useRef<(HTMLVideoElement | null)[]>([]);
   const videoSpanRef = useRef<(HTMLSpanElement | null)[]>([]);
-  const videoDivRef = useRef<(HTMLDivElement | null)[]>([]);
+  const videoDivRef = useRef<(HTMLSpanElement | null)[]>([]);
 
   // video and indicator
   //   const [video, setVideo] = useState({
@@ -286,10 +286,12 @@ const VideoCarousel = () => {
 
       // update the progress bar
       const animUpdate = () => {
-        anim.progress(
-          videoRef.current[videoId].currentTime /
-            highlightsSlides[videoId].videoDuration
-        );
+        if (videoRef.current[videoId]) {
+          anim.progress(
+            videoRef.current[videoId]!.currentTime /
+              highlightsSlides[videoId].videoDuration
+          );
+        }
       };
 
       if (isPlaying) {
@@ -303,11 +305,11 @@ const VideoCarousel = () => {
   }, [videoId, startPlay]);
 
   useEffect(() => {
-    if (loadedData.length > 5) {
+    if (loadedData.length > 5 && videoRef.current[videoId]) {
       if (!isPlaying) {
-        videoRef.current[videoId].pause();
+        videoRef.current[videoId]!.pause();
       } else {
-        startPlay && videoRef.current[videoId].play();
+        startPlay && videoRef.current[videoId]!.play();
       }
     }
   }, [startPlay, videoId, isPlaying, loadedData]);
@@ -319,7 +321,7 @@ const VideoCarousel = () => {
   ) => {
     switch (type) {
       case "video-end":
-        setVideo((pre) => ({ ...pre, isEnd: true, videoId: i + 1 }));
+        setVideo((pre) => ({ ...pre, isEnd: true, videoId: (i ?? 0) + 1 }));
         break;
 
       case "video-last":
@@ -343,7 +345,7 @@ const VideoCarousel = () => {
     }
   };
 
-  const handleLoadedMetaData = (i, e) => setLoadedData((pre) => [...pre, e]);
+  const handleLoadedMetaData = (_i: number, e: React.SyntheticEvent<HTMLVideoElement, Event>) => setLoadedData((pre) => [...pre, e.nativeEvent]);
 
   return (
     <>
@@ -370,12 +372,16 @@ const VideoCarousel = () => {
               {videoRef.current.map((_, i) => (
                 <span
                   key={i}
-                  ref={(el) => (videoDivRef.current[i] = el)}
+                  ref={(el) => {
+                    if (el) videoDivRef.current[i] = el;
+                  }}
                   className="mx-1 my-1 w-2 h-2 bg-custom-gray-100 rounded-full relative cursor-pointer"
                 >
                   <span
                     className="absolute h-full w-full rounded-full"
-                    ref={(el) => (videoSpanRef.current[i] = el)}
+                    ref={(el) => {
+                      if (el) videoSpanRef.current[i] = el;
+                    }}
                   />
                 </span>
               ))}

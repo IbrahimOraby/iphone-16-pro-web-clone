@@ -156,7 +156,9 @@ function VideoCarousel2() {
                   preload="auto"
                   muted
                   playsInline
-                  ref={(el) => (videoRefs.current[index] = el)}
+                  ref={(el) => {
+                    if (el) videoRefs.current[index] = el;
+                  }}
                   onEnded={handleVideoEnded}
                   onPlay={() => setIsPlaying(true)}
                   onPause={() => setIsPlaying(false)}
